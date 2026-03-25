@@ -55,7 +55,18 @@ jobs:
         if: failure()
         uses: sarisia/actions-status-discord@v1
         with:
-          webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
           status: failure
-          description: "TorBox Downloader build failed"
-          username: "Android Build"
+          title: "TorBox Downloader Build Failed"
+          description: "Build #${{ github.run_number }} failed"
+          nofail: true
+
+      - name: Notify Discord on Success
+        if: success()
+        uses: sarisia/actions-status-discord@v1
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          status: success
+          title: "TorBox Downloader Build Successful"
+          description: "APK ready: Build #${{ github.run_number }}"
+          nofail: true
