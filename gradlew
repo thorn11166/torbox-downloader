@@ -1,1 +1,96 @@
-404: Not Found
+#!/bin/sh
+
+#
+# Copyright 2015 the original author or authors.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+##############################################################################
+##
+##  Gradle start up script for UN*X
+##
+##############################################################################
+
+# Attempt to set APP_HOME
+# Resolve links: $0 may be a symlink
+PRG="$0"
+# Need this for daisy-chained symlinks.
+while [ -h "$PRG" ] ; do
+    ls -ld "$PRG"
+    PRG=`readlink "$PRG"`
+done
+SAVED="`pwd`"
+cd "`dirname \"$PRG\"`/" >/dev/null
+APP_HOME="`pwd -P`"
+cd "$SAVED" >/dev/null
+
+APP_NAME="Gradle"
+APP_JAR="gradle-wrapper.jar"
+APP_JAR_PATH="$APP_HOME/gradle/wrapper/$APP_JAR"
+
+# Add default JVM options here.
+DEFAULT_JVM_OPTS=""
+
+# Use the maximum available, or set MAX_FD != -1 to use that value.
+MAX_FD="maximum"
+
+warn ( ) {
+    echo "$*"
+}
+
+die ( ) {
+    echo
+    echo "$*"
+    echo
+    exit 1
+}
+
+# OS specific support (must be 'true' or 'false').
+cygwin=false
+msys=false
+darwin=false
+nonstop=false
+case "`uname`" in
+  CYGWIN* )
+    cygwin=true
+    ;;
+  Darwin* )
+    darwin=true
+    ;;
+  MSYS* | MINGW* )
+    msys=true
+    ;;
+  NONSTOP* )
+    nonstop=true
+    ;;
+esac
+
+CLASSPATH=$APP_JAR_PATH
+
+JAVACMD="java"
+which java >/dev/null 2>&1 || die "ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH."
+
+if ! [ -x "$JAVACMD" ] ; then
+    die "ERROR: JAVA_HOME is not defined correctly and java command could not be found."
+fi
+
+if [ -n "$JAVA_HOME" ] ; then
+    if [ -f "$JAVA_HOME/jre/sh/java-rmi.cgi" ] ; then
+        CLASSPATH="$CLASSPATH":"$JAVA_HOME"/jre/lib/ext/*:"$JAVA_HOME"/lib/ext/*
+    fi
+fi
+
+GRADLE_OPTS="$DEFAULT_JVM_OPTS -Dorg.gradle.appname=$APP_BASE_NAME"
+
+exec "$JAVACMD" $GRADLE_OPTS -classpath "$CLASSPATH" org.gradle.wrapper.GradleWrapperMain "$@"
